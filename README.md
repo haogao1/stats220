@@ -8,3 +8,4 @@ A little about me:
 - I am taking STATS 220 because my major is Stats.
 - I am interested in learning about R.
 
+A meme that captures how I currently feel about my university studies is ![]([https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif](https://media1.tenor.com/m/grsddPTkAxoAAAAC/beach-ocean.gif))
