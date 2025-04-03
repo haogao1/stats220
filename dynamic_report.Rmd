@@ -41,7 +41,7 @@ latest_data <- logged_data%>%
 
 
 ```
-There are 'r nrow(latest_data)'response of my survey. I have ask 'r ncol(latest_data)'questions. The reason why I did this survey is because I myself need to commute two hours by bus to go to school and go home every day, so I am curious about other people's commuting arrangements.
+There are 20 response of my survey. I have ask 3 questions. The reason why I did this survey is because I myself need to commute two hours by bus to go to school and go home every day, so I am curious about other people's commuting arrangements.
 
 
 ## Summary values in my dataset!
