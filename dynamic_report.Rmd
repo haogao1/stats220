@@ -1,0 +1,80 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+body {
+background-color:#f4f4f4;
+font-family: 'Indie Flower', cursive;
+}
+
+h2 {
+    color: #206c2e; 
+    font-weight: bold;
+}
+h1 {
+    color: #782fb5;
+    font-weight: bold;
+}
+```
+
+## What's going on with this data?
+
+```{r}
+#This is the data that i collected.
+#load data and rename the frame
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQX1RryB1Rf4cPrPUOEFrYzTPqosyxiq8wLmvYQSTV-QeH-tblRn9_b3MsOjxM8_f3A_-0CHRRmB6f6/pub?output=csv")
+names(logged_data)
+#rename variables
+latest_data <- logged_data%>%
+  rename(trans_mode = 2,
+         include_walk = 3,
+         commute_time = 4) %>%
+  select(trans_mode,include_walk,commute_time)%>%
+  print()
+
+
+```
+There are 'r nrow(latest_data)'response of my survey. I have ask 'r ncol(latest_data)'questions. The reason why I did this survey is because I myself need to commute two hours by bus to go to school and go home every day, so I am curious about other people's commuting arrangements.
+
+
+## Summary values in my dataset!
+```{r}
+longest_time <- latest_data$commute_time
+max(longest_time)
+shortest_time <- latest_data$commute_time
+min(shortest_time)
+mean_time <- latest_data$commute_time
+mean(mean_time)
+```
+Since the other two variables in my data set are not easy to quantify, I chose commuting time. I used the code to find the maximum commuting time, minimum commuting time, and average commuting time of the people participating in the survey. This is a good reflection of the time it takes for everyone to get to school or work.
+
+## The two bar graphs I made.
+```{r}
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = trans_mode,fill = include_walk))+
+  labs(x = "The mode of transportation",
+       y = "Number of people",
+       title = "The mode of transportation you use most often？")
+
+latest_data %>%
+  ggplot() +
+  geom_bar(aes(x = commute_time,fill = include_walk))+
+  labs(title = "How long does your daily commute take?（The unit is minutes）",
+       subtitle = "Does your daily commute include walking?",
+       caption = "Travel Opinion Survey for STATS220",
+       x = "Time",
+       y = "Number of people")
+```
+
+First plot: The bar chart shows participants' most commonly used modes of transportation and whether walking is part of their commute. Public transportation stands out as the most popular mode, with eight users—all of whom incorporate walking. In contrast, cycling is the least common, with only two users. Interestingly, even among those who drive, the majority still include walking in their daily routine. This highlights that walking plays a significant role in many people's commutes, regardless of the primary transport method.
+
+
+Second plot: This bar chart shows the distribution of survey participants' commute times (in minutes) and indicates whether their commute time includes walking. Commute times range from less than 25 minutes to more than 2 hours, with 25 minutes being the most common. Almost all commutes include walking. This pattern shows that walking plays an important role in most people's daily travel, regardless of the total commute time.
